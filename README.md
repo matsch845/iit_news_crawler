@@ -1,6 +1,6 @@
 # information_integration_2022
 
-# general architecture
+## general architecture
 The google news crawler is based on the general functionality of the rb_crawler. Found here: 
 https://github.com/bakdata/hpi-ii-project-2022
 It crawls the rss feed of google news via specific keywords we set for every day ytd 2022.
@@ -37,7 +37,7 @@ https://news.google.com/rss/search?q=Wirtschaft+after:2022-01-01+before:2022-01-
 
 The xml gets parsed and sent via protobuff to kafka.
 
-# how2run
+## how2run
 1. `poetry install`
 2. `poetry run python main.py --start_date YYYY-MM-DD` 
    (Optional you can also specify the `--end_date YYY-MM-DD`, whereby it defaults to the todays date if not provided)
