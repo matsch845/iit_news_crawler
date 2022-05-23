@@ -38,5 +38,5 @@ https://news.google.com/rss/search?q=Wirtschaft+after:2022-01-01+before:2022-01-
 The xml gets parsed and sent via protobuff to kafka.
 
 # how2run
-1) `poetry install`
-2)`poetry run python main.py`
+1. `poetry install`
+2. `poetry run python main.py`
