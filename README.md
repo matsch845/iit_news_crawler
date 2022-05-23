@@ -28,7 +28,7 @@ keywords = [
 
 
 Adding the date via a start and end-date the query looks something like:
-https://news.google.com/rss/search?q=" + keyword + "+after:" + start_date.strftime(dateformat) + "+before:" + end_date.strftime(dateformat) + "&ceid=DE:de&hl=de&gl=DE
+`https://news.google.com/rss/search?q=" + keyword + "+after:" + start_date.strftime(dateformat) + "+before:" + end_date.strftime(dateformat) + "&ceid=DE:de&hl=de&gl=DE`
 
 So the crawler iterates over each keyword for every date ytd.
 
