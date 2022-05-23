@@ -39,4 +39,5 @@ The xml gets parsed and sent via protobuff to kafka.
 
 # how2run
 1. `poetry install`
-2. `poetry run python main.py`
+2. `poetry run python main.py --start_date YYYY-MM-DD` 
+   (Optional you can also specify the `--end_date YYY-MM-DD`, whereby it defaults to the todays date if not provided)
