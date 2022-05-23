@@ -1,6 +1,6 @@
 # information_integration_2022
 
-# general archtiecture
+# general architecture
 The google news crawler is based on the general functionality of the rb_crawler.
 It crawls the rss feed of google news via specific keywords we set for every day ytd 2022.
 This is necesseray since the rss feed is limited to 100 entries per request. 
