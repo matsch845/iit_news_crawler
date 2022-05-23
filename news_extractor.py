@@ -12,9 +12,10 @@ from parsel import Selector
 from news_producer import News_Producer
 from build.gen.article_pb2 import Article
 
+from constant import DATEFORMAT
+
 
 log = logging.getLogger(__name__)
-dateformat = "%Y-%m-%d"
 
 class News_Extractor:
     def __init__(self):
@@ -38,16 +39,14 @@ class News_Extractor:
             "Öl",
             "Preise"]
 
-    def crawl(self):
-        start_date = date(2022, 1, 1)
-        end_date = date.today()
+    def crawl(self, start_date: date, end_date: date):
         delta = timedelta(days=1)
 
         while start_date <= end_date:
             for keyword in self.keywords:
                 end_date_temp = start_date + delta
 
-                print("crawling keyword " + keyword + " within daterange: " + start_date.strftime(dateformat) + " - " + end_date_temp.strftime(dateformat) )
+                print("crawling keyword " + keyword + " within daterange: " + start_date.strftime(DATEFORMAT) + " - " + end_date_temp.strftime(DATEFORMAT) )
                 
                 self.crawl_by_keyword_and_date(keyword, start_date, end_date_temp)
                 sleep(0.5)
@@ -106,7 +105,7 @@ class News_Extractor:
             log.error(f"Error")
 
     def send_request(self, keyword, start_date, end_date) -> str:
-        url = f"https://news.google.com/rss/search?q=" + keyword + "+after:" + start_date.strftime(dateformat) + "+before:" + end_date.strftime(dateformat) + "&ceid=DE:de&hl=de&gl=DE"
+        url = f"https://news.google.com/rss/search?q=" + keyword + "+after:" + start_date.strftime(DATEFORMAT) + "+before:" + end_date.strftime(DATEFORMAT) + "&ceid=DE:de&hl=de&gl=DE"
 
         print("used url: " + url)
 

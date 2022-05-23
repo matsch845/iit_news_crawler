@@ -1,23 +1,36 @@
-# information from https://stackoverflow.com/questions/51537063/url-format-for-google-news-rss-feed
-# 
-# possible endpoints (rss):
-# https://news.google.com/news/rss/headlines/section/topic/{topic} where topic has to be one of these: WORLD NATION BUSINESS TECHNOLOGY ENTERTAINMENT SPORTS SCIENCE HEALTH
-# https://news.google.com/rss/search?q={query} (BUT: not allowed to use (robot.txt))
-
-
-# https://news.google.com/rss/search?q=Wirtschaft+after:2020-06-02+before:2020-06-10&ceid=DE:de&hl=de&gl=DE
-
 import click
+import datetime
+from datetime import date
 from news_extractor import News_Extractor
-from constant import Topic
+from constant import Topic, DATEFORMAT
 
 @click.command()
-#@click.option("-s", "--startDate", type=str, help="The earliest publication date of an article")
-#@click.option("-t", "--topic", type=click.Choice(Topic), help="A specific topic the articles should be filtered by")
-def run():
+@click.option("-s", "--start_date", type=str, help="The earliest publication date of an article (format YYYY-MM-DD)")
+@click.option("-e", "--end_date", type=str, help="The last publication date of an article (format YYYY-MM-DD). If this option is not provided, it defaults to the current date")
+def run(start_date: str, end_date: str):
+    if(start_date is None):
+        print("No valid start date provided")
+        exit(1)
+    
+    try:
+        s_date = datetime.datetime.strptime(start_date, DATEFORMAT).date()
+    except:
+        print("No valid start date provided. Please use the following format: YYYY-MM-DD")
+        exit(1)
+    
+    if(end_date is None):
+        e_date = date.today()
+    else:
+        try:
+            e_date = datetime.datetime.strptime(end_date, DATEFORMAT).date()
+        except:
+            print("No valid end date provided. Please use the following format: YYYY-MM-DD")
+            exit(1)
+
     news_crawler = News_Extractor()
-    print("Google News crawling started ...")
-    news_crawler.crawl()
+    print("News crawling started (" + s_date.strftime(DATEFORMAT) + " - " + e_date.strftime(DATEFORMAT) + ")")
+    
+    news_crawler.crawl(s_date, e_date)
 
 if __name__ == "__main__":
     run()
