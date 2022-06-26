@@ -6,9 +6,6 @@ authors = ["raminqaf <ramin.gharib@bakdata.com>"]
 license = "MIT"
 readme = "README.md"
 repository = "https://github.com/bakdata/hpi-ii-project-2022"
-packages = [
-    { include = "rb_crawler" }
-]
 
 [tool.poetry.dependencies]
 python = "^3.8"
@@ -73,6 +70,8 @@ w3lib = "1.22.0"
 wsproto = "1.1.0"
 "zope.interface" = "5.4.0"
 click = "8.0.2"
+pandas = "^1.4.3"
+elasticsearch7 = "^7.17.4"
 
 [tool.poetry.dev-dependencies]
 black = {version = "^21.7b0", allow-prereleases = true, python = "^3.8" }
@@ -88,10 +87,10 @@ include_trailing_comma = true
 lines_after_imports = 2
 lines_between_types = 1
 use_parentheses = true
-src_paths = ["rb_crawler"]
+src_paths = ["iit_news_crawler"]
 skip_glob = ['build/*']
 filter_files = true
-known_first_party = "rb_crawler"
+known_first_party = "iit_news_crawler"
 line_length = 100
 
 [tool.black]
