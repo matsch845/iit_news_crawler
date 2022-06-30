@@ -12,6 +12,8 @@ https://news.google.com/rss/search?q=Apple
 
 The xml gets parsed and sent via protobuff to kafka.
 
+more details in presentation.
+
 ## how2run
 1. `poetry install`
 2. `poetry run python main.py
